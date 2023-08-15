@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Next Word Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        button:focus {
+            border-color: #3498db;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        p {
+            margin-top: 15px;
+            color: #666666;
+            font-size: 16px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Next Word Prediction</h1>
+        <input type="text" id="inputText" placeholder="Enter your text">
+        <input type="number" id="numWords" placeholder="Number of words">
+        <button id="predictButton">Predict</button>
+        <p id="predictionResult"></p>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#predictButton").click(function () {
+                var inputText = $("#inputText").val();
+                var numWords = $("#numWords").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/predict",
+                    data: { input_text: inputText, num_words: numWords },
+                    success: function (response) {
+                        $("#predictionResult").text(response.generated_text);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
