@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Next Word Prediction</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Next Word Prediction</h1>
+    <input type="text" id="inputText" placeholder="Enter your text">
+    <input type="number" id="numWords" placeholder="Number of words">
+    <button id="predictButton">Predict</button>
+    <p id="predictionResult"></p>
+    <script>
+        $(document).ready(function () {
+            $("#predictButton").click(function () {
+                var inputText = $("#inputText").val();
+                var numWords = $("#numWords").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/predict",
+                    data: { input_text: inputText, num_words: numWords },
+                    success: function (response) {
+                        $("#predictionResult").text("Generated text: " + response.generated_text);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
