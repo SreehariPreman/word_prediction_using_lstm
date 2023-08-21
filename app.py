@@ -6,7 +6,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from flask import Flask, render_template, request, jsonify
 import pickle
 
-app = Flask(__name__, template_folder='templates')  # Specify the template folder
+app = Flask(__name_g_, template_folder='templates')  # Specify the template folder
 
 # Load the tokenizer and model
 with open('rnn-lstm/tokenizer.pickle', 'rb') as handle:
