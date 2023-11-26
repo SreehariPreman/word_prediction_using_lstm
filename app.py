@@ -9,9 +9,9 @@ import pickle
 app = Flask(__name__, template_folder='templates')  # Specify the template folder
 
 # Load the tokenizer and model
-with open('rnn-lstm/tokenizer.pickle', 'rb') as handle:
+with open('data/tokenizer.pickle', 'rb') as handle:
     mytokenizer = pickle.load(handle)
-model =load_model('rnn-lstm/word_generation_model.h5')
+model =load_model('data/word_generation_model.h5')
 
 @app.route('/')
 def index():

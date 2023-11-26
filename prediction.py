@@ -5,11 +5,11 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pickle
 
 # Load the tokenizer from training
-with open('rnn-lstm/tokenizer.pickle', 'rb') as handle:
+with open('data/tokenizer.pickle', 'rb') as handle:
     mytokenizer = pickle.load(handle)
 
 # Load the trained model
-model = tf.keras.models.load_model('rnn-lstm/word_generation_model.h5')
+model = tf.keras.models.load_model('data/word_generation_model.h5')
 
 input_text = "prime"
 predict_next_words = 5
